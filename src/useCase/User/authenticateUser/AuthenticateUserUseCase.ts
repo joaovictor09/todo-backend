@@ -1,5 +1,6 @@
 import { compare } from "bcrypt";
-import { client } from "../../prisma/client";
+import { client } from "../../../prisma/client";
+import { GenerateJwtTokenProvider } from "../../../provider/GenerateJwtTokenProvider";
 
 export interface IAuthenticateUser{
   username: string;
@@ -25,13 +26,20 @@ class AuthenticateUserUseCase{
       throw new Error('Username or Password are incorrect');
     }
 
+    //Verifica se a senha está correta
+
     const passwordMatch = await compare(password, userAlreadyExists.password)
 
     if (!passwordMatch){
       throw new Error('Username or Password are incorrect');
     }
 
-    return userAlreadyExists
+    //Gera JWT Token
+
+    const generateJwtTokenProvider = new GenerateJwtTokenProvider();
+    const token = await generateJwtTokenProvider.execute(userAlreadyExists.id)
+
+    return { token }
   }
 }
 

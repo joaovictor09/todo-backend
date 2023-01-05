@@ -15,5 +15,15 @@ model User {
   username String @unique
   password String
 
+  todos Todo[]
+
   @@map("users")
+}
+
+model Todo {
+  id     String @id @default(uuid())
+  title  String
+  userId String
+
+  User User @relation(fields: [userId], references: [id])
 }

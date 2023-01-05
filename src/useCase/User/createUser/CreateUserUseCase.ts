@@ -1,5 +1,5 @@
 import { hash } from "bcrypt";
-import { client } from "../../prisma/client";
+import { client } from "../../../prisma/client";
 
 export interface ICreateUser {
   username: string;
