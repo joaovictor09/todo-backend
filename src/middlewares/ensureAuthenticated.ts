@@ -15,6 +15,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
   //Desestruta Bearer Token
 
   const [, token] = authToken.split(' ');
+  
 
   if (!token){
     return response.status(401).json({
