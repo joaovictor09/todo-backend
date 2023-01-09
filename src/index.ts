@@ -8,7 +8,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({ origin: ["https://www.joaovictor.dev", "https://www.todo.joaovictor.dev"] }))
 app.use(router)
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
