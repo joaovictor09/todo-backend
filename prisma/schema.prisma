@@ -21,9 +21,11 @@ model User {
 }
 
 model Todo {
-  id     String @id @default(uuid())
-  title  String
-  userId String
+  id        String   @id @default(uuid())
+  title     String
+  userId    String
+  completed Boolean  @default(false)
+  date      DateTime @default(now())
 
   User User @relation(fields: [userId], references: [id])
 

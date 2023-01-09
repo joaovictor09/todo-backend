@@ -1,5 +1,6 @@
 import { hash } from "bcrypt";
 import { client } from "../../../prisma/client";
+import { GenerateJwtTokenProvider } from "../../../provider/GenerateJwtTokenProvider";
 
 export interface ICreateUser {
   username: string;
@@ -37,9 +38,12 @@ class CreateUserUseCase{
       }
     })
 
-    //Return new user
+    //Return new jwt token
 
-    return user
+    const generateJwtTokenProvider = new GenerateJwtTokenProvider();
+    const token = await generateJwtTokenProvider.execute(user.id)
+
+    return { token }
   }
 }
 
