@@ -56,7 +56,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Express
 - Cors
 - JsonWebToken
-- 
+- Bcrypt
 
 ---
 
