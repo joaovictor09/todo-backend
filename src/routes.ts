@@ -21,8 +21,8 @@ router.get("/", (req, res) => { res.send('Hello World') });
 router.post('/login' , authenticateUserController.handle);
 router.post('/signin', createUserController.handle);
 
-router.delete('/todos/:todoId', ensureAuthenticated, deleteTodoController.handle)
 router.put('/todos/:todoId', ensureAuthenticated, changeCompletedController.handle)
+router.delete('/todos/:todoId', ensureAuthenticated, deleteTodoController.handle)
 router.post('/todos', ensureAuthenticated, createTodoController.handle);
 router.get('/todos', ensureAuthenticated, listTodosController.handle);
 
